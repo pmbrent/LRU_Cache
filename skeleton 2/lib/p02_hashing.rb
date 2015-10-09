@@ -6,7 +6,7 @@ class Array
 
   def hash
     self.map.with_index do |el, idx|
-      (el * idx).hash
+      (el.hash ^ idx).hash
     end.reduce(:+).to_i
   end
 
@@ -23,7 +23,7 @@ end
 class Hash
 
   def hash
-    self.to_a.flatten.map(&:to_s).sort!.map(&:ord).hash
+    self.to_a.flatten.map(&:to_s).sort.map(&:ord).hash
   end
 
 end
